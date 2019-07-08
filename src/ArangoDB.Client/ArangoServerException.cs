@@ -9,9 +9,11 @@ namespace ArangoDB.Client
 {
     public class ArangoServerException : Exception
     {
+        public BaseResult BaseResult { get; }
+
         public ArangoServerException(BaseResult baseResult)
-            : base(string.Format("{0}. ErrorNumber: {1} HttpStatusCode: {2}", baseResult.ErrorMessage, baseResult.ErrorNum, baseResult.Code))
-        {
+            : base(string.Format("{0}. ErrorNumber: {1} HttpStatusCode: {2}", baseResult.ErrorMessage, baseResult.ErrorNum, baseResult.Code)) {
+            BaseResult = baseResult;
         }
 
         public ArangoServerException(string message)
